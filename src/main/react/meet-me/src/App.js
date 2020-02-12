@@ -1,25 +1,21 @@
 import React from 'react';
 import './App.css';
-import LoginView from "./views/LoginView";
-import Dashboard from "./components/Dashboard";
+import LoginView from "./components/LoginView";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import NavBar from "./components/NavBar";
 import MainPage from "./views/MainPage";
+import WelcomePage from "./views/WelcomePage";
 
 function App() {
     return (
-        <body>
+        <div>
         <Router>
-            <NavBar/>
-            <div>
-                <Switch>
-                    <Route path="/" exact component={MainPage}/>
-                    <Route path="/signin" exact component={LoginView}/>
-                    <Route path="/dashboard" exact component={Dashboard}/>
-                </Switch>
-            </div>
+            <Switch>
+                <Route path="/" exact component={WelcomePage}/>
+                <Route path="/signin" exact component={LoginView}/>
+                <Route path="/dashboard" exact component={MainPage}/>
+            </Switch>
         </Router>
-        </body>
+        </div>
     );
 }
 

@@ -5,14 +5,17 @@ function NavBar()
     return(
         <div>
             <ul className="nav-list">
-                <a href='/'>
-                    <li className="nav-links">Main</li>
-                </a>
                 <a href='/dashboard'>
                     <li className="nav-links">Dashboard</li>
                 </a>
-                <a href='/signin'>
-                    <li className="nav-links">Login</li>
+                <a href='/messages'>
+                    <li className="nav-links">Messages</li>
+                </a>
+                <a href='/profile'>
+                    <li className="nav-links">Profile</li>
+                </a>
+                <a href='/logout'>
+                    <li className="nav-links">Logout</li>
                 </a>
             </ul>
         </div>

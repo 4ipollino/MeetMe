@@ -1,14 +1,17 @@
 import React from 'react';
-import logo from '../logo.svg';
+import Dashboard from "../components/Dashboard";
+import NavBar from "../components/NavBar";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function MainPage()
 {
     return(
         <div>
-            <h1>Welcome! This is main page</h1>
-            <div className="logo-main">
-                <img src={logo}/>
-            </div>
+            <NavBar/>
+            <Switch>
+                <Route path="/dashboard" exact component={Dashboard}>
+                </Route>
+            </Switch>
         </div>
     );
 }
