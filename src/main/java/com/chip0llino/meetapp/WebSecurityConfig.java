@@ -26,8 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.regexMatchers("/*").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/").permitAll()
+                .defaultSuccessUrl("/dashboard")
+                .loginProcessingUrl("/login").permitAll()
                 .and()
                 .logout()
                 .permitAll();

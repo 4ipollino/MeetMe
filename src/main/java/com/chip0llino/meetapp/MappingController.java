@@ -29,4 +29,9 @@ public class MappingController {
                 return (String.format("\"result\": %s", e.getMessage()));
             }
         }
+
+    @PostMapping("/login")
+    public void loginUser(@RequestBody ServiceUser user) {
+        LOGGER.debug("logged in");
+    }
 }
