@@ -1,7 +1,7 @@
-com/chip0llino/meetapp/App.class
-com/chip0llino/meetapp/MappingController.class
-com/chip0llino/meetapp/ServiceUser.class
-com/chip0llino/meetapp/MVCConfig.class
-com/chip0llino/meetapp/MongoUserDetailsService.class
-com/chip0llino/meetapp/WebSecurityConfig.class
-com/chip0llino/meetapp/UsersRepository.class
+com\chip0llino\meetapp\MappingController.class
+com\chip0llino\meetapp\WebSecurityConfig.class
+com\chip0llino\meetapp\ServiceUser.class
+com\chip0llino\meetapp\App.class
+com\chip0llino\meetapp\MongoUserDetailsService.class
+com\chip0llino\meetapp\UsersRepository.class
+com\chip0llino\meetapp\MVCConfig.class

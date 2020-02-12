@@ -10,19 +10,20 @@ function LoginView()
         <div>
             <h1>Login form</h1>
             <div className="form-css">
-                <form>
+                <form method="post" action="/login">
                     <div className="form-row">
                         <label className="form-label">Email</label>
-                        <input type="text" className="text-input"/>
+                        <input type="text" name="username" id="username" className="text-input"/>
                     </div>
                     <div className="form-row">
                         <label className="form-label">Password</label>
-                        <input type="password" className="text-input"/>
+                        <input type="password" name="password" id="password" className="text-input"/>
                     </div>
                     <div className="form-row">
-                        <input type="button" onClick={Login} className="btn-def" value="Login"/>
+                        <button type="submit" name="submit" className="btn-def">Login</button>
                     </div>
-                </form></div>
+                </form>
+            </div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 
+
 package com.chip0llino.meetapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,33 +24,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/static/**", "/modules/**", "/", "/login*", "/signin*").permitAll()
                 .anyRequest().authenticated()
-                //.regexMatchers("/*").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/").permitAll()
+                .loginPage("/signin").permitAll()
                 .defaultSuccessUrl("/dashboard")
-                .loginProcessingUrl("/login").permitAll()
+                .loginProcessingUrl("/login")
                 .and()
                 .logout()
-                .permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll()
+        .and()
+        .csrf().disable();
     }
 
-    @Autowired
-    MongoUserDetailsService userDetailsService;
+
+    /*@Autowired
+    MongoUserDetailsService userDetailsService;*/
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService());
     }
 
+    //Stab for login without db user
     @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-
-/*    @Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -59,8 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .build();
 
         return new InMemoryUserDetailsManager(user);
-    }*/
+    }
 
 }
+
 
 

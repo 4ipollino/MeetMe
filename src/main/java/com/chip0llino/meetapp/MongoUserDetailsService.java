@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+// Class for searching users from database to allow to login
 @Component
 public class MongoUserDetailsService implements UserDetailsService {
     @Autowired
