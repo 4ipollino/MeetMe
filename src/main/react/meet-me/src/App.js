@@ -4,6 +4,7 @@ import LoginView from "./components/LoginView";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import MainPage from "./views/MainPage";
 import WelcomePage from "./views/WelcomePage";
+import RegistrationView from "./components/RegistrationView";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component={WelcomePage}/>
                 <Route path="/signin" exact component={LoginView}/>
+                <Route path="/signup" exact component={RegistrationView}/>
                 <Route path="/dashboard" exact component={MainPage}/>
             </Switch>
         </Router>

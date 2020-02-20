@@ -9,8 +9,7 @@ function MainPage()
         <div>
             <NavBar/>
             <Switch>
-                <Route path="/dashboard" exact component={Dashboard}>
-                </Route>
+                <Route path="/dashboard" exact component={Dashboard}/>
             </Switch>
         </div>
     );

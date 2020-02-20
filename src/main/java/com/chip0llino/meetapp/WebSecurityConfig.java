@@ -14,23 +14,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/static/**", "/modules/**", "/", "/login*", "/signin*").permitAll()
+                .antMatchers("/static/**", "/modules/**", "/", "/login*", "/signin*", "/signup*", "/register*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signin").permitAll()
                 .defaultSuccessUrl("/dashboard")
-                .loginProcessingUrl("/login")
+                //.failureForwardUrl("/signin")
+                //.loginProcessingUrl("/login")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -40,17 +48,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    /*@Autowired
-    MongoUserDetailsService userDetailsService;*/
+    @Autowired
+    MongoUserDetailsService userDetailsService;
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     //Stab for login without db user
-    @Bean
+    /*@Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -61,7 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .build();
 
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
 
 }
 
