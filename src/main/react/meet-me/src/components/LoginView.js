@@ -18,6 +18,9 @@ function LoginView()
                         </div>
                         <div className="form-row">
                             <button type="submit" name="submit" className="btn-def">Login</button>
+                            <div className="flex-center">
+                                <a href="/signup">Register</a>
+                            </div>
                         </div>
                     </form>
                 </div>

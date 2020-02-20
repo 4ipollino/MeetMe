@@ -2,6 +2,8 @@
 
 package com.chip0llino.meetapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -22,10 +25,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+    private  static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,8 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/signin").permitAll()
                 .defaultSuccessUrl("/dashboard")
-                //.failureForwardUrl("/signin")
-                //.loginProcessingUrl("/login")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -47,14 +45,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable();
     }
 
-
     @Autowired
     MongoUserDetailsService userDetailsService;
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        try {
+            auth.userDetailsService(userDetailsService).passwordEncoder(passEncoder());
+        }
+        catch (Exception e)
+        {
+            LOGGER.info(String.format("Error handled from WebSecurityConfig.configure - %s", e.getMessage()));
+        }
+    }
+
+    @Bean
+    PasswordEncoder passEncoder() {
+        return new MyPassEncoder();
     }
 
     //Stab for login without db user

@@ -32,3 +32,22 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+a {
+    font-size: 20px;
+    vertical-align: top;
+    margin: 1em 0.5em 1em;
+    height: 2em;
+    color: #2d2d2d;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.block-center {
+    display: block;
+    margin: auto;
+}

@@ -1,5 +1,7 @@
 com/chip0llino/meetapp/UserExistsException.class
 com/chip0llino/meetapp/App.class
+com/chip0llino/meetapp/ServiceUserAuthorization.class
+com/chip0llino/meetapp/MyPassEncoder.class
 com/chip0llino/meetapp/MappingController.class
 com/chip0llino/meetapp/ServiceUser.class
 com/chip0llino/meetapp/MVCConfig.class

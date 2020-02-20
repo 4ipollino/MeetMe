@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Redirect, withRouter} from "react-router";
 
 class RegistrationView extends Component
 {
@@ -12,7 +13,8 @@ class RegistrationView extends Component
         this.state = {
             email: '',
             password: '',
-            repeatPass: ''
+            repeatPass: '',
+            isRegistered: false,
         };
     }
 
@@ -36,7 +38,6 @@ class RegistrationView extends Component
         }
     }
 
-    //TODO: add password encryption
     User() {
         return(
             {
@@ -51,16 +52,30 @@ class RegistrationView extends Component
 
         axios
             .post('http://localhost/register', this.User(), this.requestOptions)
-            .then(res => { this.history.pushState(null, "Login", "/login") })
+            .then(res => {
+                this.setState(this.setState(() => ({
+                    isRegistered: true
+                })))
+            })
             .catch(err => {
-                    console.log(err.response.data.message);
-                    alert(err.response.data.message);
+                    try {
+                        console.log(err.response.data.message);
+                        alert(err.response.data.message);
+                    }
+                    catch (e) {
+                        console.log(err);
+                        alert(err);
+                    }
                 }
             );
     }
 
     render() {
         const isEnabled = this.Validate();
+        if (this.state.isRegistered === true) {
+            return (<Redirect to='/signin' />);
+        }
+
         return (
             <div>
                 <div className="login-back">
@@ -81,6 +96,9 @@ class RegistrationView extends Component
                             </div>
                             <div className="form-row">
                                 <button className="btn-def" disabled={!isEnabled} onClick={this.signUp}>Register</button>
+                                <div className="flex-center">
+                                    <a href="/signin">Sign In</a>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -90,4 +108,4 @@ class RegistrationView extends Component
     }
 }
 
-export default RegistrationView;
+export default withRouter(RegistrationView);

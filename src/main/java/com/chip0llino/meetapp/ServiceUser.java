@@ -1,7 +1,9 @@
 package com.chip0llino.meetapp;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Objects;
 
@@ -9,9 +11,13 @@ import java.util.Objects;
 public class ServiceUser {
     @Id
     private String email;
+    @Indexed
     private String name;
+    @Indexed
     private String surname;
+    @Field
     private String password;
+    @Field("imgLink")
     private String image;
 
     public ServiceUser(String email, String password) {
