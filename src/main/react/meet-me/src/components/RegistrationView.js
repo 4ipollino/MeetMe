@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect, withRouter} from "react-router";
+import {Box, Button, TextInput, Text, Form, Layer, RoutedAnchor} from 'grommet';
 
 class RegistrationView extends Component
 {
@@ -78,30 +79,32 @@ class RegistrationView extends Component
 
         return (
             <div>
-                <div className="login-back">
-                    <h1>Registration</h1>
-                    <div className="form-css">
-                        <form>
-                            <div className="form-row">
-                                <label className="form-label">Email</label>
-                                <input type="text" name="email" id="email" className="text-input" value={this.state.email} onChange={this.handleChange}/>
-                            </div>
-                            <div className="form-row">
-                                <label className="form-label">Password</label>
-                                <input type="password" name="password" id="password" className="text-input" value={this.state.password} onChange={this.handleChange}/>
-                            </div>
-                            <div className="form-row">
-                                <label className="form-label">Repeat Password</label>
-                                <input type="password" name="repeatPass" id="repeatPass" className="text-input" value={this.state.repeatPass} onChange={this.handleChange}/>
-                            </div>
-                            <div className="form-row">
-                                <button className="btn-def" disabled={!isEnabled} onClick={this.signUp}>Register</button>
+                <div>
+                    <Form>
+                        <Layer position="top" full="vertical" modal={false} plain={true}>
+                            <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                                <h1>Registration</h1>
+                            </Box>
+                            <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                                <Text>Email</Text>
+                                <TextInput type="text" name="email" id="email" value={this.state.email} onChange={this.handleChange}/>
+                            </Box>
+                            <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                                <Text>Password</Text>
+                                <TextInput type="password" name="password" id="password" value={this.state.password} onChange={this.handleChange}/>
+                            </Box>
+                            <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                                <Text>Repeat Password</Text>
+                                <TextInput type="password" name="repeatPass" id="repeatPass" value={this.state.repeatPass} onChange={this.handleChange}/>
+                            </Box>
+                            <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                                <Button disabled={!isEnabled} onClick={this.signUp} label="Register"/>
                                 <div className="flex-center">
-                                    <a href="/signin">Sign In</a>
+                                    <RoutedAnchor path="/signin">Sign In</RoutedAnchor>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
+                            </Box>
+                        </Layer>
+                    </Form>
                 </div>
             </div>
         )

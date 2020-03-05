@@ -1,13 +1,13 @@
 import React from 'react';
 import Dashboard from "../components/Dashboard";
-import NavBar from "../components/NavBar";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import HeaderNav from "../components/HeaderNav";
 
 function MainPage()
 {
     return(
         <div>
-            <NavBar/>
+            <HeaderNav/>
             <Switch>
                 <Route path="/dashboard" exact component={Dashboard}/>
             </Switch>

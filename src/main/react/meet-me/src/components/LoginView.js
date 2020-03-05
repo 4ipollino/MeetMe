@@ -1,32 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {Box, Button, TextInput, Text, Form, Layer, RoutedAnchor} from 'grommet';
 
-function LoginView()
+class LoginView extends Component
 {
-    return(
-        <div>
-            <div className="login-back">
-                <h1>Log In</h1>
-                <div className="form-css">
-                    <form method="post">
-                        <div className="form-row">
-                            <label className="form-label">Email</label>
-                            <input type="text" name="username" id="username" className="text-input"/>
-                        </div>
-                        <div className="form-row">
-                            <label className="form-label">Password</label>
-                            <input type="password" name="password" id="password" className="text-input"/>
-                        </div>
-                        <div className="form-row">
-                            <button type="submit" name="submit" className="btn-def">Login</button>
+    render() {
+        return (
+            <div>
+                <Form method="post">
+                    <Layer position="top" full="vertical" modal={false} plain={true}>
+                        <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                            <Text><h1>Log In</h1></Text>
+                        </Box>
+                        <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                            <Text>Email</Text>
+                            <TextInput type="text" name="username" id="username"/>
+                        </Box>
+                        <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                            <Text>Password</Text>
+                            <TextInput type="password" name="password" id="password"/>
+                        </Box>
+                        <Box pad={{ horizontal: 'medium', vertical: 'small'}}>
+                            <Button type="submit" name="submit" label="Log In"/>
                             <div className="flex-center">
-                                <a href="/signup">Register</a>
+                                <RoutedAnchor path="/signup">Register</RoutedAnchor>
                             </div>
-                        </div>
-                    </form>
-                </div>
+                        </Box>
+                    </Layer>
+                </Form>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default LoginView;
