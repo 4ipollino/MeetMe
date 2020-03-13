@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  meetMe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    image: "meetme"
+    container_name: "MeetMe"
+    ports:
+    - "80:80"
+    depends_on:
+    - database
+    links:
+    - database
+  database:
+    restart: always
+    image: "mongo"
+    container_name: "meetme-mongo"
+    environment:
+    - MONGO_INITDB_DATABASE=eventsDatabase
+    - MONGO_INITDB_ROOT_USERNAME=4ip0llino
+    - MONGO_INITDB_ROOT_PASSWORD=KLV@4ip0
+    volumes:
+    - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    - ./mongo-volume:/data/db
+    ports:
+    - "27017-27019:27017-27019"

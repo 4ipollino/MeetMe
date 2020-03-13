@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {Image} from "grommet";
+import React, {Component, useReducer} from 'react';
+import {Image, Text} from "grommet";
 
 class UserData extends Component
 {
     render() {
         return(
             <div>
-                <Image src='../logo.svg'/>
+                <Image height='60em' width='60em' src={window.location.origin + '/logo512.png'} alt="React Logo"/>
+                <Text color='white' textAlign='center'>user.name</Text>
             </div>
         );
     }

@@ -39,4 +39,19 @@ public class MappingController {
             throw new UserExistsException(user);
         }
     }
+
+    @PostMapping("/getUser")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public String getUser(@RequestBody String username) {
+        try {
+            LOGGER.info(String.format("Searching user with email: %s", username));
+            repository.findByEmail(username);
+        }
+        catch (DuplicateKeyException | com.mongodb.DuplicateKeyException e)
+        {
+            LOGGER.error(e.getMessage());
+        }
+        return "123";
+    }
 }
