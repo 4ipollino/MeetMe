@@ -1,4 +1,4 @@
-package com.chip0llino.meetapp;
+package com.chip0llino.meetapp.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

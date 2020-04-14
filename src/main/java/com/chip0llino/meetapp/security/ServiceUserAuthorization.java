@@ -1,5 +1,6 @@
-package com.chip0llino.meetapp;
+package com.chip0llino.meetapp.security;
 
+import com.chip0llino.meetapp.entities.ServiceUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

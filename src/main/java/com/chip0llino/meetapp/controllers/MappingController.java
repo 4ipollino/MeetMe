@@ -1,11 +1,12 @@
-package com.chip0llino.meetapp;
+package com.chip0llino.meetapp.controllers;
 
-import com.mongodb.MongoWriteException;
-import org.apache.catalina.filters.ExpiresFilter;
+import com.chip0llino.meetapp.entities.ServiceUser;
+import com.chip0llino.meetapp.security.MyPassEncoder;
+import com.chip0llino.meetapp.security.UserExistsException;
+import com.chip0llino.meetapp.security.UsersRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
