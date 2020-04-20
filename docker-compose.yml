@@ -16,7 +16,7 @@ services:
   mongo:
     restart: always
     image: "mongo"
-    container_name: "meetme-mongo"
+    container_name: "mongo"
     environment:
     -  MONGO_INITDB_DATABASE=eventsDatabase
     -  MONGO_INITDB_ROOT_USERNAME=4ip0llino
